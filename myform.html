@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css" />
+    <title>My Form</title>
+</head>
+<body>
+    <h1>My Image Viewer</h1>
+    <form id="imageForm">
+        <label for="imageName" >Enter Image Name:</label>
+        <input type="text" id="imageName" name="imageName">
+        <button type="button" onclick="displayImage()">Display Image</button>
+    </form>
+    <br>
+    <div id="imageContainer"></div>
+
+
+    <script>
+        function displayImage() {
+            var imageName = document.getElementById("imageName").value;
+            var imageContainer = document.getElementById("imageContainer");
+
+            var image = new Image();
+            image.onload = function() {
+                imageContainer.innerHTML = "";
+                imageContainer.appendChild(image);
+            };
+            image.onerror = function() {
+                imageContainer.innerHTML = "No image found.";
+            };
+            image.src = "images/" + imageName;
+            image.height = 400;
+            image.width = 500;
+        }
+    </script>
+</body>
+</html>
